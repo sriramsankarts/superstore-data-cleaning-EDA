@@ -1,89 +1,107 @@
-🌍 Global Superstore Data Cleaning and Exploration
+🌍 Global Superstore Data Analysis Project
 
 📊 Project Overview
-This project involves cleaning and exploring the Global Superstore dataset using SQL to extract key insights. The dataset covers sales, customer segments, regional data, and more, allowing for in-depth analysis of store performance and customer trends.
 
----
+This project involves cleaning, exploring, and visualizing the **Global Superstore** dataset using **SQL** and **Power BI** to uncover actionable business insights. The dataset spans sales, customer segments, regional data, and logistics, providing a comprehensive view of store performance, customer behavior, and profitability trends.
 
 📂 Project Structure
-- Data 
-  - **Raw Data:** Unprocessed dataset in Excel format.
-  - **Cleaned Data:** Dataset after applying transformations, stored in SQL.
-  - **Scripts:** SQL queries used for data cleaning and exploration.
 
----
+global-superstore-project/
+│
+├── data/
+│   ├── raw_data.xlsx              # Original unprocessed dataset
+│   └── cleaned_data.sql           # Cleaned version imported into MySQL
+│
+├── scripts/
+│   └── queries.sql                # SQL scripts for data cleaning and analysis
+│
+├── dashboard/
+│   └── global_superstore_dashboard.pbix  # Power BI dashboard file
+│
+└── README.md                      # Project documentation (this file)
 
-🧽 Data Cleaning Steps
-To ensure accuracy and consistency, various cleaning steps were applied to remove errors, normalize data, and handle missing values.
+🧽 Data Cleaning Process
 
-1. **📅 Date Formatting**  
-   - Reformatted `Order Date` and `Ship Date` to SQL `DATE` type for better handling in analyses.
-2. **🏷️ Column Renaming**  
-   - Standardized column names for clarity and consistency.
-3. **🚫 Missing Data Handling**  
-   - Replaced `NULL` and blank `Postal Code` entries with "Unknown."
-4. **✂️ Duplicate Removal**  
-   - Identified and removed duplicate `Order_ID` entries.
-5. **📈 Profit and Discount Analysis**  
-   - Created `profit_status` and `discount_status` columns to track profit trends and discount application.
+Performed in **MySQL Workbench**, the data cleaning steps ensured consistency, accuracy, and usability for downstream analysis and visualization.
 
----
+1. 📅 Date Formatting
 
-🔍 Data Exploration
-After cleaning, the data was explored to uncover key insights about the business and customers.
+   * Reformatted `Order Date` and `Ship Date` to the SQL `DATE` type for proper chronological analysis.
 
-🏆 Descriptive Statistics
-   - **Average Sales:** Calculate average sales across all orders.
-   - **Standard Deviation:** Determine variability for sales, quantity, profit, and shipping costs.
-   - **Top Products:** Identify the best-selling products based on total sales.
+2. 🏷️ Standardized Column Naming
 
-🌎 Regional Insights
-   - **Country and Region Trends:** Track sales and profit by country and region.
-   - **Shipping Mode Analysis:** Examine preferred shipping methods and associated costs.
+   * Renamed columns to follow consistent naming conventions (e.g., `order_id`, `customer_segment`, etc.).
+
+3. 🚫 Missing Value Handling
+
+   * Replaced null or blank values in `Postal Code` with `'Unknown'`.
+
+4. 🔁 Duplicate Detection
+
+   * Removed duplicate rows based on `Order_ID` to ensure data uniqueness.
+
+5. 📈 Profit and Discount Categorization
+
+   * Added derived columns like `profit_status` (e.g., `Profitable`, `Loss`) and `discount_status` to analyze pricing effectiveness.
+
+
+🔍 Data Exploration Highlights
+
+📌 Descriptive Analysis
+
+* **Average Sales** across all orders
+* **Standard Deviation** for sales, profit, quantity, and shipping cost
+* **Top Products** by sales volume and profitability
+
+🌍 Regional Insights
+
+* **Country & Region Performance:** Sales and profit comparison across different geographies
+* **Shipping Mode Analysis:** Popular shipping methods and their associated costs and timelines
 
 📈 Time Series Analysis
-   - **Monthly Sales and Profit:** Analyze monthly performance from 2011 to 2014.
-   - **High-Profit Periods:** Identify peak months and years for profit.
 
----
+* **Monthly Sales & Profit Trends:** Spanning 2011 to 2014
+* **Peak Seasons:** Identification of months/years with maximum profitability
 
-📌 Key Queries
+📊 Power BI Dashboard
 
-Below are some core SQL queries used in the project:
+A dynamic **Power BI dashboard** was created to bring data insights to life. Key visuals include:
 
-Top 10 Products by Sales:**
-   ```sql
-   SELECT product_name, ROUND(SUM(Sales), 2) AS Total_Sales
-   FROM global_superstore2
-   GROUP BY product_name
-   ORDER BY Total_Sales DESC
-   LIMIT 10;
-   ```
+* Regional Sales and Profit Map
+* Top Products by Revenue
+* Monthly Trends (Sales, Profit, Orders)
+* Discount vs Profitability Analysis
+* Customer Segment Performance
 
-Monthly Sales and Profit Trends:**
-   ```sql
-   SELECT DATE_FORMAT(order_date , "%Y-%m") AS Monthly_Year, 
-          ROUND(SUM(Sales), 2) AS Monthly_sales, 
-          ROUND(SUM(Profit), 2) AS Monthly_Profit
-   FROM global_superstore2
-   GROUP BY Monthly_Year
-   ORDER BY Monthly_Year;
-   ```
+📁 **File:** `/dashboard/global_superstore_dashboard.pbix`
 
----
+> ✅ The dashboard enhances decision-making by providing interactive, visual storytelling of core KPIs and trends.
 
 ⚙️ Technologies Used
-- **📄 Excel** for initial data input and formatting
-- **🛠️ MySQL Workbench** for data cleaning, transformations, and exploration
 
----
+* **📄 Excel** – Initial data preparation
+* **🛠️ MySQL Workbench** – Data cleaning and SQL analysis
+* **📊 Power BI** – Dashboard creation and visualization
 
-📥 Repository Contents
-- `data/`: Contains both the raw and cleaned datasets.
-- `queries.sql`: All SQL scripts used for data cleaning and exploration.
-- `README.md`: Project documentation and details (this file).
+📥 Repository Contents Summary
 
----
+| Path                  | Description                          |
+| --------------------- | ------------------------------------ |
+| `data/`               | Raw and cleaned datasets             |
+| `scripts/queries.sql` | SQL cleaning and exploration scripts |
+| `dashboard/`          | Power BI dashboard file              |
+| `README.md`           | Project overview and documentation   |
+
 
 📝 Lessons Learned
-This project provided hands-on experience with SQL for data cleaning and analysis, improving skills in data manipulation, trend identification, and understanding large datasets. It highlighted the importance of data quality and consistency for meaningful insights.
+
+This project strengthened skills in:
+
+* SQL-based data cleaning and transformation
+* Writing efficient queries for business insights
+* Time-series and regional trend analysis
+* Designing effective visual dashboards in Power BI
+
+It reinforced the importance of clean, consistent data and the value of combining SQL and BI tools for comprehensive business analytics.
+
+
